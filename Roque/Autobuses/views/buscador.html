@@ -1,0 +1,31 @@
+<div id="buscador" class="container" ng-controller="buscadorCtrl as search">
+
+    <a class="favBtn" ui-sref="favoritos">
+        <span class="fa fa-star"></span>
+    </a>
+
+    <div class="buscador">
+        <h4>Busca por línea o autobús</h4>
+        <div class="input-helper">
+            <input type="search" ng-model="search.busqueda.parada">
+            <button ng-click="search.buscar()">
+                <span class="fa fa-search"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="resultados">
+        <ul class="busList">
+            <li ng-repeat="parada in search.paradas.lista | filter: search.busqueda track by parada.parada ">
+                <i ng-click="search.paradas.toggleFav($index)" class="fa fa-star" ng-class="{'active' : parada.isFav}"></i>
+                <div ui-sref="parada({id: parada.parada})">
+                    Parada: <strong>{{parada.parada}} </strong>| Buses: <span ng-repeat="buses in parada.buses">{{buses}}{{$last ? '' : ($index==Users.length-2) ? ' and ' : ', '}}</span>
+                </div>
+            </li>
+        </ul>
+        <div ng-if="(search.paradas.lista | filter: search.busqueda).length == 0">
+            Lo sentimos, no hay resultados
+        </div>
+    </div>
+
+</div>

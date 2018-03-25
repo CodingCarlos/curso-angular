@@ -1,0 +1,128 @@
+body {
+  background: #333;
+  padding: 50px;
+  font-family: sans-serif; }
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; }
+
+a {
+  color: inherit; }
+
+h4 {
+  color: #eee; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.container {
+  position: relative; }
+
+#buscador .buscador .input-helper {
+  position: relative; }
+  #buscador .buscador .input-helper button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer; }
+
+#buscador .resultados {
+  color: #eee; }
+  #buscador .resultados .busList {
+    margin-top: 60px; }
+
+#favoritos .busList {
+  margin-top: 30px; }
+
+#parada {
+  color: #eee; }
+  #parada .loading {
+    text-align: center; }
+  #parada .horarios ul li {
+    transition: .2s ease-in;
+    position: relative; }
+    #parada .horarios ul li.ng-enter {
+      top: 20px; }
+    #parada .horarios ul li.ng-enter-active {
+      top: 0; }
+
+.busList li {
+  position: relative; }
+  .busList li > div {
+    padding: 20px;
+    background: white;
+    margin-bottom: 10px;
+    position: relative;
+    background: #eee;
+    color: #333;
+    cursor: pointer;
+    transition: .3s ease-in; }
+    .busList li > div:hover, .busList li > div.active {
+      background: white; }
+
+.busList i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -40px;
+  font-size: 25px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.2); }
+  .busList i:hover {
+    color: rgba(244, 223, 66, 0.7); }
+  .busList i.active {
+    color: #f4df42; }
+
+.favBtn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  top: -40px;
+  right: 10px;
+  transition: .15s ease-in; }
+  .favBtn span {
+    color: #f4df42;
+    transition: .15s ease-in; }
+  .favBtn:hover {
+    background: #f4df42; }
+    .favBtn:hover span {
+      color: #333; }
+
+.arrowBtn {
+  top: -40px;
+  right: 10px;
+  position: absolute; }
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: all .25s ease-in-out;
+  transform: translateY(50px); }
+
+[ui-view].ng-enter {
+  opacity: 0; }
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+  transform: translateY(0%); }
+
+[ui-view].ng-leave {
+  opacity: 1;
+  transform: translateY(0%); }
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+  transform: translateY(50px); }

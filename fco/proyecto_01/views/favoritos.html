@@ -1,0 +1,277 @@
+<!doctype html>
+<html ng-app="time">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Autobuses</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  
+  <body class="favoritos">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Autobuses</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Inicio</a>
+            <a class="nav-link" href="#">Favoritos</a>
+            <a class="nav-link" href="#">Contacto</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover" ng-controller="tiempoController as tiempo">
+        <h1 class="cover-heading">Número de parada</h1>
+		<div class="tiempo container-fluid">
+			<input class="form-control" type="text" placeholder="p.e. 6327" ng-model="tiempo.search">
+			<ul class="listadoparadas">
+				<li ng-repeat="listado in tiempo.tiempos | filter:tiempo.search">{{listado.numParada}}, {{listado.nombre}}</li>
+			</ul>
+		</div>
+		<hr />
+		<div class="favoritos">
+			Aquí van los favoritos
+		</div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </footer>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	
+	<script>
+	angular.module('time', []);
+	
+	angular.module('time').controller('tiempoController', timeCtrl);
+
+	function timeCtrl(listaTiempos) {
+		console.log('controlador tiempo');
+	
+		var self = this;
+	
+		self.tiempos = listaTiempos;
+	}
+	
+	angular.module('time').service('listaTiempos', listadoTiempos);
+
+	function listadoTiempos() {
+		console.log('Serviciooooooo!!!');
+
+		var tiempos = [
+			{
+				numParada: 789,
+				nombre: "Paseo de Extremadura, 54",
+				tiempo: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 365,
+				nombre: "Av. de la Aviación, 3",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 164,
+				nombre: "Calle Illescas, 76",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 359,
+				nombre: "Calle Villacarriedo, 1",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 996,
+				nombre: "Gran Vía, 32",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 461,
+				nombre: "Calle Fuencarral, 4",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 123,
+				nombre: "Gran Avenida, 65",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 593,
+				nombre: "Plaza de Colón",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 476,
+				nombre: "Plaza Mayor, s/n",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+			{
+				numParada: 249,
+				nombre: "Calle Carretas, 4",
+				lineas: [
+					{
+						linea: 65,
+						mins: 8
+					},
+					{
+						linea: 39,
+						mins: 6
+					},
+					{
+						linea: 31,
+						mins: 5
+					}
+				]
+			},
+		];
+
+		return tiempos;
+	}
+	
+	
+	
+	</script>
+	
+	
+  </body>
+</html>

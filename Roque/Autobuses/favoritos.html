@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Favoritos</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body ng-app="app">
+
+        <div id="favoritos" class="container" ng-controller="favCtrl as fav">
+            <h4>Lista de Favoritos</h4>
+            <ul class="busList">
+                <li ng-repeat="parada in fav.paradas.lista track by parada.parada" ng-if="parada.isFav">
+                    <i ng-click="fav.paradas.toggleFav($index)" class="fa fa-star" ng-class="{'active' : parada.isFav}"></i>
+                    Parada: <strong>{{parada.parada}} </strong>| Buses: <span ng-repeat="buses in parada.buses">{{buses}}{{$last ? '' : ($index==Users.length-2) ? ' and ' : ', '}}</span>
+                </li>
+            </ul>
+            <div ng-if="(search.paradas | filter: search.busqueda).length == 0">
+                Lo sentimos, no hay resultados
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+        <script>
+
+            // APP
+            angular.module('app', []);
+
+            // ** Buscador
+            angular.module('app').controller('favCtrl', favCtrl)
+
+            function favCtrl (paradas) {
+
+                var self = this;
+                self.paradas = paradas;
+
+            }
+
+
+            // SERVICES
+			angular.module('app').service('paradas', paradaService);
+
+            function paradaService() {
+                
+                var toggleFav = function(index) {
+                    paradas.lista[index].isFav = !paradas.lista[index].isFav 
+                }
+
+                var paradas = {
+                    lista: [
+                        {
+                            parada: "123",
+                            buses: [
+                                234,
+                                12,
+                                323
+                            ],
+                            isFav: true
+                        },
+                        {
+                            parada: "234",
+                            buses: [
+                                1,
+                                12,
+                                45
+                            ],
+                            isFav: false
+                        },
+                        {
+                            parada: "434",
+                            buses: [
+                                45,
+                                123,
+                                54
+                            ],
+                            isFav: true
+                        },
+                        {
+                            parada: "523",
+                            buses: [
+                                132,
+                                433,
+                                123
+                            ],
+                            isFav: false
+                        }
+                    ],
+                    toggleFav: toggleFav
+                }
+
+                return paradas;
+            }
+
+        </script>
+    </body>
+</html>

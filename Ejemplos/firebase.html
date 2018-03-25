@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>Angular demo</title>
+
+		<style type="text/css">
+			.verified {
+				font-weight: bold;
+			}
+		</style>
+
+	</head>
+	<body ng-app="app">
+
+		<div ng-controller="SampleCtrl as S"> 
+			{{S.data.esto.mola}} 
+
+			<button ng-click="S.cambiar('demasiado')">Demasiado</button>
+			<button ng-click="S.cambiar('bastante')">Bastante</button>
+			<button ng-click="S.cambiar('un poco')">Un poco</button>
+
+			<hr>
+
+			<ul>
+				<li ng-repeat="item in S.list track by item.$id">
+					{{item.$id}} - <span ng-class="{verified: item.verified}">{{item.name}}</span> <button ng-click="S.rem($index)">remove</button>
+				</li>
+			</ul>
+			<input type="text" ng-model="S.item" />
+			<button ng-click="S.push()">PUSH!</button>
+
+		</div>
+
+
+		<!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+		<!-- Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+		<!-- AngularFire -->
+		<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyDM7Lb3-0YUUxdFG2xcQQb82Fxwugwuv-Y",
+		    authDomain: "real-angular.firebaseapp.com",
+		    databaseURL: "https://real-angular.firebaseio.com",
+		    projectId: "real-angular",
+		    storageBucket: "real-angular.appspot.com",
+		    messagingSenderId: "114851401658"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+
+		<script>
+			
+			angular.module('app', ['firebase'])
+				.controller("SampleCtrl", function($firebaseObject, $firebaseArray) {
+					var self = this;
+
+					// Objects and data
+
+					var ref = firebase.database().ref()
+					
+					// download the data into a local object
+					self.data = $firebaseObject(ref);
+
+					self.cambiar = function(nuevoMola) {
+						self.data.esto.mola = nuevoMola;
+						self.data.$save();
+					}
+
+
+					// Arrays
+
+					self.item = 'default';
+
+					var refList = firebase.database().ref('list');
+					self.list = $firebaseArray(refList);
+
+					self.push = function() {
+						console.log(self.item);
+						self.list.$add({name: self.item, verified: false});
+					}
+
+					self.rem = function(i) {
+						console.log(i);
+						self.list.$remove(i);
+					}
+
+					// putting a console.log here won't work, see below
+					console.log(self.data);
+				});
+
+		</script>
+
+
+	<body>
+</html>

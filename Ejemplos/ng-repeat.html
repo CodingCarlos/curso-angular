@@ -1,0 +1,87 @@
+
+<html ng-app="app">
+	<head></head>
+	<body>
+
+		<div ng-controller="NameController as name">
+
+			<input type="text" ng-model="name.search">
+			<input type="radio" name="order" ng-model="name.order" value="age"> AGE
+			<input type="radio" name="order" ng-model="name.order" value="name"> Name
+
+			<ul>
+				<li ng-repeat="elem in name.list | orderBy:name.order | filter:name.search track by elem.id">
+					<span>
+						{{elem.name}}, {{elem.age}}
+					</span>
+				</li>
+			</ul>
+			
+			<!-- <button ng-click="name.rem();">Remove Eusebio</button> -->
+		</div>	
+
+
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+		<script type="text/javascript">
+
+
+			var app = angular.module('app', []);
+
+			angular.module('app').controller('NameController', function () {
+				var self = this;
+				
+				self.list = [
+					{
+						name: "Paco",
+						age: 121,
+						id: 754
+					}, 
+					{
+						name: "Rufo",
+						age: 31,
+						id: 8745
+					}, 
+					{
+						name: "Lucas",
+						age: 21,
+						id: "dsdsd"
+					}, 
+					{
+						name: "Eusebio",
+						age: 21,
+						id: 293
+					}, 
+					{
+						name: "Eustaquio",
+						age: 22,
+						id: 437
+					}, 
+					{
+						name: "Paco",
+						age: 41,
+						id: 4457
+					}, 
+					{
+						name: "Pablo",
+						age: 24,
+						id: 4458
+					}
+				];
+
+				self.log = function() {
+					console.log('init!');
+				}
+
+				self.rem = function() {
+					console.log('borrando a Eusebio...');
+					self.list.splice(3, 1);
+				}
+
+
+			});
+		</script>
+
+	</body>
+</html>

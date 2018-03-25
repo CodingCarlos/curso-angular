@@ -1,0 +1,187 @@
+$bg_main: #333;
+$main: #eee;
+
+
+//RESET
+body {
+    background: $bg_main;
+    padding: 50px;
+    font-family: sans-serif;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+a {
+    color: inherit;
+}
+
+h4 {
+    color: $main;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+}
+
+//BUSCADOR
+#buscador {
+
+    .buscador {
+
+        .input-helper {
+            position: relative;
+    
+            button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 40px;
+                background: none;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .resultados {
+        color: $main;
+
+        .busList {
+            margin-top: 60px;
+        } 
+    }
+}
+
+
+//FAVORITOS
+#favoritos {
+
+    .busList {
+        margin-top: 30px;
+    }
+}
+
+//LISTA DE PARADAS
+#parada {
+    color: $main;
+
+    .loading {
+        text-align: center;
+    }
+
+    .horarios {
+
+    }
+}
+
+
+//COMPONENTS
+.busList {
+
+    li {
+        position: relative;
+
+        > div {
+            padding: 20px;
+            background: white;
+            margin-bottom: 10px;
+            position: relative;
+            background: $main;
+            color: $bg_main;
+            cursor: pointer;
+            transition: .3s ease-in;
+    
+            &:hover, &.active {
+                background: white;
+            }
+        }
+    }
+
+    i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -40px;
+        font-size: 25px;
+        cursor: pointer;
+        color: rgba(white, .2);
+
+        &:hover {
+            color: rgba(#f4df42, .7);
+        }
+
+        &.active {
+            color: #f4df42;
+        } 
+    }
+}
+
+.favBtn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid rgba(white,.2);
+    top: -40px;
+    right: 10px;
+    transition: .15s ease-in;
+
+    span {
+        color: #f4df42;
+        transition: .15s ease-in;
+    }
+
+    &:hover {
+        background: #f4df42;
+
+        span {
+            color: $bg_main;
+        }
+    }
+}
+
+.arrowBtn {
+    top: -40px;
+    right: 10px;
+    position: absolute;
+}
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition:all .25s ease-in-out;
+    transform: translateY(50px)
+}
+  
+[ui-view].ng-enter {
+    opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+    opacity: 1;
+    transform: translateY(0%)
+}
+
+[ui-view].ng-leave {
+    opacity: 1;
+    transform: translateY(0%)
+}
+
+[ui-view].ng-leave-active {
+    opacity: 0;
+    transform: translateY(50px)
+}

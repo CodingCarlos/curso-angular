@@ -1,0 +1,27 @@
+<div id="parada" class="container" ng-controller="paradaCtrl as prd">
+        <a class="favBtn" ui-sref="index" href="#!/">
+            <span class="fa fa-arrow-left"></span>
+        </a>
+
+    <!-- Página para parada nº {{prd.paradaNumber}} -->
+
+    <h4>Parada: {{prd.paradaNumber}}</h4>
+
+    <div class="loading" ng-if="prd.loading">
+        <img src="../assets/img/loading.gif">
+    </div>
+
+    <div class="horarios">
+        <ul ng-repeat="item in prd.stops">
+            <li>
+                <br>
+                {{item.lineId}}
+                <br>
+                Destino: {{item.destination}}
+                <br>
+                {{item.busTimeLeft | minutes}}
+            </li>
+        </ul>
+    </div>
+
+</div>
